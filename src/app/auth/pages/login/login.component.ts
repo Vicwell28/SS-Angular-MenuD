@@ -35,6 +35,7 @@ export class LoginComponent  {
 
   login(){
     //condicion del formulario.
+    //Mejorar el algoritmo de login. Comparar la el cofigo de respuesta de la api para comparar y mostrar mensajes al usuario
     this.user.postLogin(this.loginForm.value).subscribe(datos => {
       console.log(datos);
       if(datos.length == 1){

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from './shared/services/user.service';
 
@@ -9,21 +9,20 @@ import { UserService } from './shared/services/user.service';
 export class GuardGuard implements CanActivate {
 
   constructor(
-    private user : UserService
+    private user : UserService, 
+    private route : Router
   )
   {}
   
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
     if(this.user.getToken()){
-      console.log("Tiene un Token")
       return true;
     }
   
-    console.log("No tiene un token");
-
+    this.route.navigate(['../auth']);
     return false;
-
   }
 }
