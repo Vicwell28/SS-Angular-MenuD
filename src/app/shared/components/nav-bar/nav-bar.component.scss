@@ -1,0 +1,49 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 240px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-icon{
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+mat-nav-list{
+  padding: 0.5rem;
+}
+
+mat-expansion-panel{
+  margin-bottom: 0.5rem;
+}
+
+.alinging{
+
+padding: 0.5rem;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.contenidoPrincipal{
+  padding: 1rem;
+}
