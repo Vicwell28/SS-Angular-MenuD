@@ -1,63 +1,68 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false">
-      <mat-toolbar>soliduSystems</mat-toolbar>
-      <mat-nav-list>
-        <!-- Aqui ira el menu dinamico -->
-  
-        <mat-accordion *ngIf="Categorias">
-          <div *ngFor="let categoria of Categorias">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>soliduSystems</mat-toolbar>
+    <mat-nav-list>
+      <!-- Aqui ira el menu dinamico -->
+
+      <mat-accordion *ngIf="Categorias">
+        <div *ngFor="let categoria of Categorias">
           <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <mat-icon>{{categoria.icon}}</mat-icon> {{categoria.name}}
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <div class="alinging" *ngFor="let view of categoria.View"> 
-                <mat-icon>{{view.icon}}</mat-icon>
-                <a href="">{{view.name}}</a>
-                <mat-divider></mat-divider>
-              </div>
-            </mat-expansion-panel>
-          </div>
-        </mat-accordion>
-  
-        <!-- Aqui termina el menu dinamico -->
-        
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-          *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>{{ categoria.icon }}</mat-icon> {{ categoria.name }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="alinging" *ngFor="let view of categoria.View">
+              <mat-icon>{{ view.icon }}</mat-icon>
+              <a routerLink="{{view.route}}">{{
+                view.name
+              }}</a>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-expansion-panel>
+        </div>
+      </mat-accordion>
+
+      <!-- Aqui termina el menu dinamico -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <span class="example-spacer"></span>
+      
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>{{ username }}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="perfil()">
+          <mat-icon>manage_accounts</mat-icon>Mi Perfil
         </button>
-  
-        <span class="example-spacer"></span>
-        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon>Victor Miguel</button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="perfil()"><mat-icon>manage_accounts</mat-icon>Mi Perfil</button>
-            <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon>Logout</button>
-          </mat-menu>
-  
-      </mat-toolbar>
-      
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>Logout
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    
+    <router-outlet></router-outlet>
 
 
-
-      
-      <router-outlet></router-outlet>
-
-
-
-      
-  
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+  </mat-sidenav-content>
+</mat-sidenav-container>

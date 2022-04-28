@@ -35,23 +35,23 @@ export class UserService {
 
   //FUNCIONES PRINCIPALES DE USER
   getIndexUser():Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.url}logout`); 
+    return this.http.get<ResponseI>(`${this.url}user`); 
   }
 
   postStoreUser(User : UserI):Observable<ResponseI>{
-    return this.http.post<ResponseI>(`${this.url}logout`, User); 
+    return this.http.post<ResponseI>(`${this.url}user`, User); 
   }
 
-  getShowUser(id : number):Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.url}logout`); 
+  getShowUser(auth : string | null):Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.url}user/1`); 
   }
 
   putUpdateUser(id : number, User : any):Observable<ResponseI>{
-    return this.http.put<ResponseI>(`${this.url}logout`, User); 
+    return this.http.put<ResponseI>(`${this.url}user`, User); 
   }
 
   deleteDestroyUser(id : number):Observable<ResponseI>{
-    return this.http.delete<ResponseI>(`${this.url}logout`); 
+    return this.http.delete<ResponseI>(`${this.url}user`); 
   }
  
   //GUARDAR DATOS LOCAL

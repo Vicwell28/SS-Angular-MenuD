@@ -5,6 +5,7 @@ import { LoginI } from 'src/app/shared/Models/login.interface';
 import { AlertasService } from 'src/app/shared/services/alertas.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,30 +13,27 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class LoginComponent  {
 
-  loginForm!: FormGroup; 
+  public loading = false;
   
-
   constructor(
     private user : UserService, 
     private router:Router, 
     private fb : FormBuilder, 
     private alerts : AlertasService
     ) { }
-
-  errorStatus : boolean = false; 
-  errorMsg : string = '';
-
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.minLength(2)]],
-      password: ['', Validators.required]
+    
+    errorStatus : boolean = false; 
+    errorMsg : string = '';
+    
+    ngOnInit(): void {  }
+    
+    public loginForm = this.fb.group({
+      email : ['', [Validators.required, Validators.email]],
+      password : ['', [Validators.required, , Validators.minLength(5)]], 
     });
-  }
-
 
   login(){
-    //condicion del formulario.
-    //Mejorar el algoritmo de login. Comparar la el cofigo de respuesta de la api para comparar y mostrar mensajes al usuario
+ 
     this.user.postLogin(this.loginForm.value).subscribe(datos => {
       console.log(datos);
       if(datos.length == 1){
@@ -47,7 +45,9 @@ export class LoginComponent  {
           this.alerts.alertOk(datos[0].message.message)
           console.log(datos[0].data.token)
           this.user.setToken(datos[0].data.token)
-          this.router.navigateByUrl('../../panel')
+          setTimeout(()=>{
+            this.router.navigateByUrl('../../panel')
+          }, 1000); 
         }
       }
       else{
