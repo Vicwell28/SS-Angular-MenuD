@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import { DialogCategoryComponent } from 'src/app/shared/components/Dialog/dialog-category/dialog-category.component';
 
 
 
@@ -13,9 +11,6 @@ import { DialogCategoryComponent } from 'src/app/shared/components/Dialog/dialog
 })
 export class AgregarCategoriaComponent implements AfterViewInit {
 
-  animal!: string;
-  name!: string;
-
   categorias : any = [];
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -24,22 +19,10 @@ export class AgregarCategoriaComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogCategoryComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
   }
 
 }

@@ -1,1 +1,10 @@
+<ngx-loading
+      [show]="loadingService.isLoadin$"
+      [config]="{
+        animationType: ngxLoadingAnimationTypes.wanderingCubes,
+        primaryColour: primaryColour,
+        secondaryColour: secondaryColour,
+        backdropBorderRadius: '3px'
+      }"
+></ngx-loading>
 <router-outlet></router-outlet>

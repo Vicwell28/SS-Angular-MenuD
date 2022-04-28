@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,8 +8,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/interceptors/auth-interceptor.service';
 
-import { NgxLoadingModule } from 'ngx-loading';
 import { LoadingService } from './shared/services/loading.service';
+
+import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
+
+
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoadingInterceptor } from './shared/interceptors/loading-interceptor.service';
+
 
 
 @NgModule({
@@ -26,12 +32,13 @@ import { LoadingService } from './shared/services/loading.service';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ApiPrefixInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: RefreshTokenInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true }
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

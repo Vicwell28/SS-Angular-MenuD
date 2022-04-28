@@ -1,17 +1,17 @@
 <div>
   <h1>Categorias</h1>
   <div class="tablacontenedor">
-    <div style="text-align: right;">
-      <div style="text-align: left; display: inline-block;  width: 20%; ">
+    <div style="text-align: right">
+      <div style="text-align: left; display: inline-block; width: 20%">
         <button mat-raised-button color="primary">
           <mat-icon>add</mat-icon> Agregar
         </button>
       </div>
-      <div style="display: inline-block; width: 80%;"> 
-        <button  mat-raised-button>
+      <div style="display: inline-block; width: 80%">
+        <button mat-raised-button>
           <mat-icon>refresh</mat-icon>
         </button>
-        <mat-form-field class="example-full-width"  appearance="standard">
+        <mat-form-field class="example-full-width" appearance="standard">
           <input matInput placeholder="Buscar" />
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
@@ -64,18 +64,3 @@
     </div>
   </div>
 </div>
-
-<ol>
-  <li>
-    <mat-form-field appearance="fill">
-      <mat-label>What's your name?</mat-label>
-      <input matInput>
-    </mat-form-field>
-  </li>
-  <li>
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
-  </li>
-  <li *ngIf="animal">
-    You chose: <i>{{animal}}</i>
-  </li>
-</ol>

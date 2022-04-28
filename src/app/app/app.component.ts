@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ngxLoadingAnimationTypes } from 'ngx-loading';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LoadingService } from '../shared/services/loading.service';
 
 @Component({
@@ -9,21 +11,15 @@ import { LoadingService } from '../shared/services/loading.service';
 })
 export class AppComponent implements OnInit{
 
-  //AQUI VAMOS A DECLARAR VARIABLES CON SU TIPO DE DATO
-  loadingStatus$!: Observable<boolean>;
+  public primaryColour = '#dd0031';
+  public secondaryColour = '#1976d2';
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
 
-  lista : string[]; 
+  isLoading = this.loadingService.isLoadin$; 
 
-  constructor(private loadingService: LoadingService){
-    //AQUI VAMOS A INICIALIZAR LAS VARIABLES
-    this.lista = ["Lista"];
-  }
+  constructor(public loadingService: LoadingService) { }
 
   ngOnInit(): void {
-    this.initProgress();
   }
-  
-  initProgress(): void {
-    this.loadingStatus$ = this.loadingService.listenLoading();
-  }
+
 }

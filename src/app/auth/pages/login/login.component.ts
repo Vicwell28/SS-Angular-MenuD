@@ -19,7 +19,7 @@ export class LoginComponent  {
     private user : UserService, 
     private router:Router, 
     private fb : FormBuilder, 
-    private alerts : AlertasService
+    private alerts : AlertasService, 
     ) { }
     
     errorStatus : boolean = false; 
