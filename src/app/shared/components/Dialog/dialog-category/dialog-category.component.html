@@ -1,14 +1,79 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Favorite Animal</mat-label>
-    <!-- <input matInput [(ngModel)]="data.animal"> -->
-    <input matInput>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>} -->
-  <button mat-button  cdkFocusInitial>Ok</button>}
-</div>
+<h1 mat-dialog-title>Agregar Categoria</h1>
+<form [formGroup]="categoryForm" (submit)="ok()">
+  <div mat-dialog-content>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Ex. vicwell.bj@gmail.com"
+        formControlName="name"
+      />
+      <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+      <mat-error *ngIf="this.categoryForm.get('name')?.errors?.['required']">
+        El <strong>nombre </strong> es requerido.
+      </mat-error>
+      <mat-error *ngIf="this.categoryForm.get('name')?.errors?.['minlength']">
+        El <strong>nivel </strong> no debe ser muy corto.
+      </mat-error>
+      <mat-error *ngIf="this.categoryForm.get('name')?.errors?.['maxlength']">
+        El <strong>nivel </strong> no debe ser muy largo.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Icono</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Ex. vicwell.bj@gmail.com"
+        formControlName="icon"
+      />
+      <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+      <mat-error *ngIf="this.categoryForm.get('icon')?.errors?.['required']">
+        El <strong>icono </strong> es requerido.
+      </mat-error>
+      <mat-error *ngIf="this.categoryForm.get('icon')?.errors?.['minlength']">
+        El <strong>nivel </strong> no debe ser muy corto.
+      </mat-error>
+      <mat-error *ngIf="this.categoryForm.get('icon')?.errors?.['maxlength']">
+        El <strong>nivel </strong> no debe ser muy largo.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nivel</mat-label>
+      <input
+        type="number"
+        maxlength="2"
+        matInput
+        placeholder="Ex. vicwell.bj@gmail.com"
+        formControlName="level"
+      />
+      <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+      <mat-error *ngIf="this.categoryForm.get('level')?.errors?.['required']">
+        El <strong>nivel </strong> es requerido.
+      </mat-error>
+      <mat-error *ngIf="this.categoryForm.get('level')?.errors?.['minlength']">
+        El <strong>nivel </strong> no debe ser muy corto.
+      </mat-error>
+      <mat-error *ngIf="this.categoryForm.get('level')?.errors?.['maxlength']">
+        El <strong>nivel </strong> no debe ser muy largo.
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions style="width: 100%; text-align: center">
+    <button style="width: 45%" mat-button type="button" (click)="onNoClick()">
+      No Thanks
+    </button>
+    <button
+      class="color1"
+      style="width: 45%"
+      [disabled]="!this.categoryForm.valid"
+      mat-raised-button
+      type="submit"
+    >
+      Ok
+    </button>
+  </div>
+</form>

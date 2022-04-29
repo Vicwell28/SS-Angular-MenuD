@@ -17,6 +17,10 @@ export class CategoriaService {
     return this.http.get<ResponseI>(`${this.url}category`); 
   }
 
+  getCategoryByRole():Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.url}get/category/role`); 
+  }
+
   postStoreCategoria(Categoria : any):Observable<ResponseI>{
     return this.http.post<ResponseI>(`${this.url}category`, Categoria); 
   }

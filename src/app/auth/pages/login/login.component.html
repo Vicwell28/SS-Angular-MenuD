@@ -6,7 +6,6 @@
       <div class="contenedor-hijo">
         <h1 class="text-center mb-4">Iniciar sesion</h1>
         <form [formGroup]="loginForm" (submit)="login()" class="example-form">
-
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Correo Electronico</mat-label>
             <input
@@ -19,7 +18,7 @@
             <mat-error
               *ngIf="this.loginForm.get('email')?.errors?.['required']"
             >
-              El <strong>Correo Electonico </strong> es requerido.
+              El <strong>Correo electronico </strong> es requerido.
             </mat-error>
             <mat-error
               *ngIf="this.loginForm.get('email')?.errors?.['email'] && !this.loginForm.get('email')?.errors?.['required']"

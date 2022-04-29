@@ -1,4 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.color1 {
+  background-color: #2a2a72;
+  background-image: linear-gradient(100deg, #2a2a72 0%, #009ffd 74%);
+  color: white;
+}
+
+.color2 {
+  background-color: #2a2a72;
+  background-image: linear-gradient(340deg, #2a2a72 0%, #009ffd 74%);
+  color: white;
+}
+
+
+.excel {
+    background-color: green;
+    color: white;
+}
+
+.pdf {
+    background-color: red;
+    color: white;
+}

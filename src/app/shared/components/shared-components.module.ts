@@ -7,19 +7,20 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DialogCategoryComponent } from './Dialog/dialog-category/dialog-category.component';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [NavBarComponent, TablaComponent, DialogCategoryComponent],
   imports: [
-    CommonModule,
+    CommonModule, 
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule, 
+    FormsModule, 
+    ReactiveFormsModule
   ], 
-  exports : [NavBarComponent, TablaComponent]
+  exports : [NavBarComponent, TablaComponent, DialogCategoryComponent]
 })
 export class SharedComponentsModule { }

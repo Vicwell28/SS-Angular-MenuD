@@ -17,13 +17,10 @@ export class GuardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     if(this.user.getToken()){
-      console.log("Guard True");
       return true;
     }
   
-    console.log("Guard false");
     this.route.navigate(['../auth']);
     return false;
   }

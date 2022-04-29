@@ -40,9 +40,8 @@ export class PanelComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.category.getIndexCategoria().subscribe(datos => {
+    this.category.getCategoryByRole().subscribe(datos => {
       this.Categorias = datos.data
-      console.log(this.Categorias);
     }); 
 
     this.user.getShowUser(this.user.getToken()).subscribe(datos => {

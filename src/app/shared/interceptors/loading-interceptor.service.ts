@@ -10,15 +10,12 @@ export class LoadingInterceptor implements HttpInterceptor {
     constructor(private loadingService: LoadingService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log("Loading True");
-
         this.loadingService.Lshow(); 
         
         return next.handle(req).pipe(
           
             finalize(() => {
                 this.loadingService.Lhide()
-                console.log("Loading False"); 
             })
         )
     }

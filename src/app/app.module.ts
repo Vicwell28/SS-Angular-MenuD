@@ -1,19 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/interceptors/auth-interceptor.service';
-
-import { LoadingService } from './shared/services/loading.service';
-
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
-
-
-import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingInterceptor } from './shared/interceptors/loading-interceptor.service';
 
 
