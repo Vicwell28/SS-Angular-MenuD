@@ -182,7 +182,7 @@
               >highlight_off</mat-icon
             >
             <mat-icon style="color: green" *ngIf="element.status"
-              >done</mat-icon
+              >check_circle_outline</mat-icon
             >
           </td>
         </ng-container>
@@ -201,6 +201,7 @@
                 *ngIf="element.status"
                 (click)="deshabilitar(element.id)"
               >
+                <mat-icon>close</mat-icon>
                 Desabilitar
               </button>
               <button
@@ -209,6 +210,7 @@
                 *ngIf="!element.status"
                 (click)="deshabilitar(element.id)"
               >
+                <mat-icon>done</mat-icon>
                 Habilitar
               </button>
               <button
@@ -216,6 +218,7 @@
                 mat-menu-item
                 (click)="openDialogEdit(element.id)"
               >
+                <mat-icon>edit</mat-icon>
                 Editar
               </button>
             </mat-menu>
