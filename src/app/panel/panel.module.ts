@@ -11,6 +11,8 @@ import { AsignandoVistasComponent } from './paginas/view/asignando-vistas/asigna
 import { AgregarUserComponent } from './paginas/user/agregar-user/agregar-user.component';
 import { AgregandoRolComponent } from './paginas/rol/agregando-rol/agregando-rol.component';
 
+
+
 @NgModule({
   declarations: [
     PanelComponent,

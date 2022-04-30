@@ -48,9 +48,8 @@ export class AgregadnoVistaComponent implements OnInit {
   }
 
 
-  applyFilter(event: Event) {
-    console.log((event.target as HTMLInputElement).value); 
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(event: any) {
+    const filterValue = event
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
@@ -78,6 +77,7 @@ export class AgregadnoVistaComponent implements OnInit {
   pdf(){
     alert("PDF");
   }
+
 }
 
 export interface Category{

@@ -21,19 +21,19 @@ export class CategoriaService {
     return this.http.get<ResponseI>(`${this.url}get/category/role`); 
   }
 
-  postStoreCategoria(Categoria : any):Observable<ResponseI>{
-    return this.http.post<ResponseI>(`${this.url}category`, Categoria); 
+  postStoreCategoria(Categoria : any):Observable<any>{
+    return this.http.post<any>(`${this.url}category`, Categoria); 
   }
 
   getShowCategoria(id : number):Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.url}category`); 
+    return this.http.get<ResponseI>(`${this.url}category/${id}`); 
   }
 
   putUpdateCategoria(id : number, Categoria : any):Observable<ResponseI>{
-    return this.http.put<ResponseI>(`${this.url}category`, Categoria); 
+    return this.http.put<ResponseI>(`${this.url}category/${id}`, Categoria); 
   }
 
   deleteDestroyCategoria(id : number):Observable<ResponseI>{
-    return this.http.delete<ResponseI>(`${this.url}category`); 
+    return this.http.delete<ResponseI>(`${this.url}category/${id}`); 
   }
 }

@@ -6,6 +6,8 @@ import { MatTableDataSource} from '@angular/material/table';
 import {MatSort, Sort} from '@angular/material/sort';
 import { DialogCategoryComponent } from 'src/app/shared/components/Dialog/dialog-category/dialog-category.component';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
+import { DialogCategoryEditComponent } from 'src/app/shared/components/Dialog/dialog-category-edit/dialog-category-edit.component';
+import { Category } from 'src/app/shared/Models/category.interface';
 
 @Component({
   selector: 'app-agregar-categoria',
@@ -20,7 +22,6 @@ export class AgregarCategoriaComponent implements OnInit  {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-
   constructor(
     private dialog : MatDialog, 
     private categoryService : CategoriaService, 
@@ -29,7 +30,7 @@ export class AgregarCategoriaComponent implements OnInit  {
 
 
   ngOnInit(): void {
-    this.categoryService.getIndexCategoria().subscribe(datos => {
+      this.categoryService.getIndexCategoria().subscribe(datos => {
       this.dataSource = new MatTableDataSource<Category>(datos.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -37,13 +38,28 @@ export class AgregarCategoriaComponent implements OnInit  {
   }
 
 
-  openDialog(): void {
+  openDialogStore(): void {
     const dialogRef = this.dialog.open(DialogCategoryComponent, {
       width: '30%',      
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      
+      this.ngOnInit();
+    });
+  }
+
+
+  openDialogEdit(id : any): void {
+    this.categoryService.getShowCategoria(id).subscribe(datos => {
+      const dialogRef = this.dialog.open(DialogCategoryEditComponent, {
+        width: '30%',      
+        data : datos.data
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');     
+        this.ngOnInit();
+      });
     });
   }
 
@@ -78,13 +94,13 @@ export class AgregarCategoriaComponent implements OnInit  {
   pdf(){
     alert("PDF");
   }
+
+  deshabilitar(id : any){
+    this.categoryService.deleteDestroyCategoria(id).subscribe(datos => {
+      console.log(datos); 
+      this.ngOnInit(); 
+    })
+  }
 }
 
-export interface Category{
-  id : number, 
-  name : string, 
-  icon : string, 
-  level : string, 
-  status : number, 
-}
 

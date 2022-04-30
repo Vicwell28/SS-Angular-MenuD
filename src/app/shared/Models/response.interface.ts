@@ -1,7 +1,7 @@
 export interface ResponseI {
-    massage: {
+    message: {
         status : any, 
-        massage : any
+        message : any
     };
     data:any;
 }

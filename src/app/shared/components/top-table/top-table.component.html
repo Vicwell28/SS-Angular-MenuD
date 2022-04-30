@@ -1,0 +1,22 @@
+<div style="text-align: right">
+    <div style="text-align: left; display: inline-block; width: 20%">
+      <button mat-raised-button class="color2" (click)="openDialog()">
+        <mat-icon>add</mat-icon> Agregar
+      </button>
+    </div>
+    <div style="display: inline-block; width: 80%">
+      <button mat-raised-button (click)="refrescar()" class="color1">
+        <mat-icon>refresh</mat-icon>
+      </button>
+
+      <mat-form-field  class="example-full-width" style="margin-left: 0.5rem; margin-right: 1rem;"  appearance="standard">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+
+      <button mat-raised-button class="excel" (click)="excel()"><mat-icon>description</mat-icon></button>
+      <button mat-raised-button class="pdf" (click)="pdf()"><mat-icon>picture_as_pdf</mat-icon></button>
+    </div>
+  </div>

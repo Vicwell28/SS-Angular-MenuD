@@ -1,4 +1,4 @@
-<h1 mat-dialog-title style="text-align: center;">Agregar Categoria</h1>
+<h1 mat-dialog-title>Editar Categoria</h1>
 <form [formGroup]="categoryForm" (submit)="ok()">
   <div mat-dialog-content>
     <mat-form-field class="example-full-width" appearance="outline">
@@ -22,15 +22,15 @@
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Favorite food</mat-label>
-      <mat-select formControlName="icon">
-        <mat-option *ngFor="let icon of icons" [value]="icon.value">
-          <mat-icon style="width: 100%; text-align: center;">
-            {{icon.viewValue}}
-          </mat-icon>
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-label>Favorite food</mat-label>
+        <mat-select formControlName="icon">
+          <mat-option *ngFor="let icon of icons" [value]="icon.value">
+            <mat-icon style="width: 100%; text-align: center;">
+              {{icon.viewValue}}
+            </mat-icon>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Nivel</mat-label>

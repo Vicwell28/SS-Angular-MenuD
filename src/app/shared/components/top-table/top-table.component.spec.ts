@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogCategoryComponent } from './dialog-category.component';
+import { TopTableComponent } from './top-table.component';
 
-describe('DialogCategoryComponent', () => {
-  let component: DialogCategoryComponent;
-  let fixture: ComponentFixture<DialogCategoryComponent>;
+describe('TopTableComponent', () => {
+  let component: TopTableComponent;
+  let fixture: ComponentFixture<TopTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DialogCategoryComponent ]
+      declarations: [ TopTableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogCategoryComponent);
+    fixture = TestBed.createComponent(TopTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
