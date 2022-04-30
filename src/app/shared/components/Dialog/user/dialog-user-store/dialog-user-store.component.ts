@@ -4,18 +4,14 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { iconI } from 'src/app/shared/Models/icon.interface';
 import { AlertasService } from 'src/app/shared/services/alertas.service';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { DialogData } from '../../dialog-category/dialog-category.component';
 
 @Component({
-  selector: 'app-dialog-category',
-  templateUrl: './dialog-category.component.html',
+  selector: 'app-dialog-user-store',
+  templateUrl: './dialog-user-store.component.html',
   styles: ['.example-full-width {width: 100%;}']
 })
-export class DialogCategoryComponent implements OnInit {
+export class DialogUserStoreComponent implements OnInit {
 
   icons : iconI [] = [
     {value: 'search', viewValue: 'search'},
@@ -38,7 +34,7 @@ export class DialogCategoryComponent implements OnInit {
   private alertService : AlertasService, 
   private categoryService : CategoriaService,
     private fb : FormBuilder,
-    public dialogRef: MatDialogRef<DialogCategoryComponent>,
+    public dialogRef: MatDialogRef<DialogUserStoreComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {}
 

@@ -5,31 +5,40 @@ import { Category } from 'src/app/shared/Models/category.interface';
 import { iconI } from 'src/app/shared/Models/icon.interface';
 import { AlertasService } from 'src/app/shared/services/alertas.service';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
-import { DialogCategoryComponent } from '../dialog-category/dialog-category.component';
+import { VistaService } from 'src/app/shared/services/vista.service';
 
 @Component({
-  selector: 'app-dialog-category-edit',
-  templateUrl: './dialog-category-edit.component.html',
+  selector: 'app-dialog-view-edit',
+  templateUrl: './dialog-view-edit.component.html',
   styles: ['.example-full-width {width: 100%;}']
 })
-export class DialogCategoryEditComponent implements OnInit {
+export class DialogViewEditComponent implements OnInit {
+
+  categorias : any;
 
   constructor(
     private alertService : AlertasService, 
     private categoryService : CategoriaService,
+    private viewService : VistaService,
     private fb : FormBuilder,
-    public dialogRef: MatDialogRef<DialogCategoryComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Category,
+    public dialogRef: MatDialogRef<DialogViewEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data : any,
   ) {}
 
-  public categoryForm = this.fb.group({
+  public viewForm = this.fb.group({
     name : [this.data.name, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]], 
-    icon : [this.data.icon], 
-    level : [this.data.level, [Validators.required]], 
-    status : [this.data.status],
+    icon : [this.data.icon,], 
+    category_id : [this.data.category_id,], 
+    route : [this.data.route,[Validators.required, Validators.minLength(3), Validators.maxLength(40)]], 
+    level : [this.data.level, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]], 
+    status : [this.data.status], 
   })
 
   ngOnInit(): void {
+    this.categoryService.getIndexCategoria().subscribe(data => {
+      this.categorias = data.data
+      console.log(this.categorias);
+    })
   }
 
   onNoClick(): void {
@@ -37,7 +46,7 @@ export class DialogCategoryEditComponent implements OnInit {
   }
 
   ok() : void {
-    this.categoryService.putUpdateCategoria(this.data.id, this.categoryForm.value).subscribe(datos => {
+    this.viewService.putUpdateView(this.data.id, this.viewForm.value).subscribe(datos => {
       console.log(datos)
       if(datos.message.status){
         this.alertService.miniAlertOk(datos.message.message);

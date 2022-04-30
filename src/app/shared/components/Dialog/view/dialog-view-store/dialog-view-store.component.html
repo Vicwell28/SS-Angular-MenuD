@@ -1,0 +1,99 @@
+<h1 mat-dialog-title style="text-align: center;">Agregar Vista</h1>
+<form [formGroup]="viewForm" (submit)="ok()">
+  <div mat-dialog-content>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Ex. vicwell.bj@gmail.com"
+        formControlName="name"
+      />
+      <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+      <mat-error *ngIf="this.viewForm.get('name')?.errors?.['required']">
+        El <strong>nombre </strong> es requerido.
+      </mat-error>
+      <mat-error *ngIf="this.viewForm.get('name')?.errors?.['minlength']">
+        El <strong>nivel </strong> no debe ser muy corto.
+      </mat-error>
+      <mat-error *ngIf="this.viewForm.get('name')?.errors?.['maxlength']">
+        El <strong>nivel </strong> no debe ser muy largo.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Ruta</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Ex. vicwell.bj@gmail.com"
+        formControlName="route"
+      />
+      <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+      <mat-error *ngIf="this.viewForm.get('route')?.errors?.['required']">
+        La <strong>route </strong> es requerido.
+      </mat-error>
+      <mat-error *ngIf="this.viewForm.get('route')?.errors?.['minlength']">
+        La <strong>route </strong> no debe ser muy corto.
+      </mat-error>
+      <mat-error *ngIf="this.viewForm.get('route')?.errors?.['maxlength']">
+        La <strong>route </strong> no debe ser muy largo.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Icono</mat-label>
+      <mat-select formControlName="icon">
+        <mat-option *ngFor="let icon of icons" [value]="icon.value">
+          <mat-icon style="width: 100%; text-align: center;">
+            {{icon.viewValue}}
+          </mat-icon>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="category_id">
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+          {{categoria.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nivel</mat-label>
+      <input
+        type="number"
+        maxlength="2"
+        matInput
+        placeholder="Ex. vicwell.bj@gmail.com"
+        formControlName="level"
+      />
+      <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+      <mat-error *ngIf="this.viewForm.get('level')?.errors?.['required']">
+        El <strong>nivel </strong> es requerido.
+      </mat-error>
+      <mat-error *ngIf="this.viewForm.get('level')?.errors?.['minlength']">
+        El <strong>nivel </strong> no debe ser muy corto.
+      </mat-error>
+      <mat-error *ngIf="this.viewForm.get('level')?.errors?.['maxlength']">
+        El <strong>nivel </strong> no debe ser muy largo.
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions style="width: 100%; text-align: center">
+    <button style="width: 45%" mat-button type="button" (click)="onNoClick()">
+      No Thanks
+    </button>
+    <button
+      class="color1"
+      style="width: 45%"
+      [disabled]="!this.viewForm.valid"
+      mat-raised-button
+      type="submit"
+    >
+      Ok
+    </button>
+  </div>
+</form>

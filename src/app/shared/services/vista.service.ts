@@ -13,23 +13,23 @@ export class VistaService {
 
   constructor(private http : HttpClient) { }
 
-  getIndexVista():Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.url}logout`); 
+  getIndexView():Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.url}view`); 
   }
 
-  postStoreVista(Vista : any):Observable<ResponseI>{
-    return this.http.post<ResponseI>(`${this.url}logout`, Vista); 
+  postStoreView(View : any):Observable<any>{
+    return this.http.post<any>(`${this.url}view`, View); 
   }
 
-  getShowVista(id : number):Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.url}logout`); 
+  getShowView(id : number):Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.url}view/${id}`); 
   }
 
-  putUpdateVista(id : number, Vista : any):Observable<ResponseI>{
-    return this.http.put<ResponseI>(`${this.url}logout`, Vista); 
+  putUpdateView(id : number, View : any):Observable<ResponseI>{
+    return this.http.put<ResponseI>(`${this.url}view/${id}`, View); 
   }
 
-  deleteDestroyVista(id : number):Observable<ResponseI>{
-    return this.http.delete<ResponseI>(`${this.url}logout`); 
+  deleteDestroyView(id : number):Observable<ResponseI>{
+    return this.http.delete<ResponseI>(`${this.url}view/${id}`); 
   }
 }

@@ -17,10 +17,6 @@ export class CategoriaService {
     return this.http.get<ResponseI>(`${this.url}category`); 
   }
 
-  getCategoryByRole():Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.url}get/category/role`); 
-  }
-
   postStoreCategoria(Categoria : any):Observable<any>{
     return this.http.post<any>(`${this.url}category`, Categoria); 
   }
@@ -35,5 +31,9 @@ export class CategoriaService {
 
   deleteDestroyCategoria(id : number):Observable<ResponseI>{
     return this.http.delete<ResponseI>(`${this.url}category/${id}`); 
+  }
+
+  getCategoryByRole():Observable<ResponseI>{
+    return this.http.get<ResponseI>(`${this.url}get/category/role`); 
   }
 }

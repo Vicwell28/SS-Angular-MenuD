@@ -5,20 +5,19 @@ import { Category } from 'src/app/shared/Models/category.interface';
 import { iconI } from 'src/app/shared/Models/icon.interface';
 import { AlertasService } from 'src/app/shared/services/alertas.service';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
-import { DialogCategoryComponent } from '../dialog-category/dialog-category.component';
 
 @Component({
-  selector: 'app-dialog-category-edit',
-  templateUrl: './dialog-category-edit.component.html',
+  selector: 'app-dialog-user-edit',
+  templateUrl: './dialog-user-edit.component.html',
   styles: ['.example-full-width {width: 100%;}']
 })
-export class DialogCategoryEditComponent implements OnInit {
+export class DialogUserEditComponent implements OnInit {
 
   constructor(
     private alertService : AlertasService, 
     private categoryService : CategoriaService,
     private fb : FormBuilder,
-    public dialogRef: MatDialogRef<DialogCategoryComponent>,
+    public dialogRef: MatDialogRef<DialogUserEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Category,
   ) {}
 

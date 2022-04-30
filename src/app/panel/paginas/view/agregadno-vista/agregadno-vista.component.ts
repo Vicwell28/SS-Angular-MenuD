@@ -5,8 +5,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import { DialogCategoryComponent } from 'src/app/shared/components/Dialog/dialog-category/dialog-category.component';
-import { CategoriaService } from 'src/app/shared/services/categoria.service';
 import { DialogCategoryEditComponent } from 'src/app/shared/components/Dialog/dialog-category-edit/dialog-category-edit.component';
+import { VistaService } from 'src/app/shared/services/vista.service';
+import { DialogViewStoreComponent } from 'src/app/shared/components/Dialog/view/dialog-view-store/dialog-view-store.component';
+import { DialogViewEditComponent } from 'src/app/shared/components/Dialog/view/dialog-view-edit/dialog-view-edit.component';
+import { CategoriaService } from 'src/app/shared/services/categoria.service';
 
 @Component({
   selector: 'app-agregadno-vista',
@@ -15,7 +18,7 @@ import { DialogCategoryEditComponent } from 'src/app/shared/components/Dialog/di
 })
 export class AgregadnoVistaComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'icon', 'level', 'status', 'opcions'];
+  displayedColumns: string[] = ['name', 'category_id', 'route', 'icon', 'level', 'status', 'opcions'];
   dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -23,20 +26,21 @@ export class AgregadnoVistaComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private categoryService: CategoriaService,
-    private _liveAnnouncer: LiveAnnouncer
+    private viewService: VistaService,
+    private _liveAnnouncer: LiveAnnouncer, 
   ) {}
 
   ngOnInit(): void {
-    this.categoryService.getIndexCategoria().subscribe((datos) => {
-      this.dataSource = new MatTableDataSource<Category>(datos.data);
+    this.viewService.getIndexView().subscribe((datos) => {
+      console.log(datos);
+      this.dataSource = new MatTableDataSource<View>(datos.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
   openDialogStore(): void {
-    const dialogRef = this.dialog.open(DialogCategoryComponent, {
+    const dialogRef = this.dialog.open(DialogViewStoreComponent, {
       width: '30%',
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -46,8 +50,8 @@ export class AgregadnoVistaComponent implements OnInit {
   }
 
   openDialogEdit(id: any): void {
-    this.categoryService.getShowCategoria(id).subscribe((datos) => {
-      const dialogRef = this.dialog.open(DialogCategoryEditComponent, {
+    this.viewService.getShowView(id).subscribe((datos) => {
+      const dialogRef = this.dialog.open(DialogViewEditComponent, {
         width: '30%',
         data: datos.data,
       });
@@ -90,18 +94,21 @@ export class AgregadnoVistaComponent implements OnInit {
   }
 
   deshabilitar(id: any) {
-    this.categoryService.deleteDestroyCategoria(id).subscribe((datos) => {
+    this.viewService.deleteDestroyView(id).subscribe((datos) => {
       console.log(datos);
       this.ngOnInit();
     });
   }
+
 }
 
 
-export interface Category{
+export interface View{
   id : number, 
   name : string, 
   icon : string, 
   level : string, 
   status : number, 
+  route : string, 
+  category_id : number,
 }

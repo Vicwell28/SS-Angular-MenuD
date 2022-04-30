@@ -4,18 +4,15 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { iconI } from 'src/app/shared/Models/icon.interface';
 import { AlertasService } from 'src/app/shared/services/alertas.service';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { VistaService } from 'src/app/shared/services/vista.service';
+import { DialogData } from '../../dialog-category/dialog-category.component';
 
 @Component({
-  selector: 'app-dialog-category',
-  templateUrl: './dialog-category.component.html',
+  selector: 'app-dialog-view-store',
+  templateUrl: './dialog-view-store.component.html',
   styles: ['.example-full-width {width: 100%;}']
 })
-export class DialogCategoryComponent implements OnInit {
+export class DialogViewStoreComponent implements OnInit {
 
   icons : iconI [] = [
     {value: 'search', viewValue: 'search'},
@@ -34,22 +31,31 @@ export class DialogCategoryComponent implements OnInit {
     {value: 'schedule', viewValue: 'schedule'},
   ];
 
+  categorias : any;
+
  constructor(
-  private alertService : AlertasService, 
-  private categoryService : CategoriaService,
+    private alertService : AlertasService, 
+    private categoryService : CategoriaService,
+    private viewService : VistaService,
     private fb : FormBuilder,
-    public dialogRef: MatDialogRef<DialogCategoryComponent>,
+    public dialogRef: MatDialogRef<DialogViewStoreComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {}
 
-  public categoryForm = this.fb.group({
+  public viewForm = this.fb.group({
     name : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]], 
     icon : ['',], 
+    category_id : ['',], 
+    route : ['',[Validators.required, Validators.minLength(3), Validators.maxLength(40)]], 
     level : [, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]], 
     status : [true], 
   })
 
   ngOnInit(): void {
+    this.categoryService.getIndexCategoria().subscribe(data => {
+      this.categorias = data.data
+      console.log(this.categorias);
+    })
   }
 
   onNoClick(): void {
@@ -57,8 +63,8 @@ export class DialogCategoryComponent implements OnInit {
   }
 
   ok() : void {
-    console.log(this.categoryForm.value);
-    this.categoryService.postStoreCategoria(this.categoryForm.value).subscribe(datos => {
+    console.log(this.viewForm.value);
+    this.viewService.postStoreView(this.viewForm.value).subscribe(datos => {
       if(datos.length >= 1){ 
         if(!datos[0].message.status){
           this.alertService.alertFail(datos[0].message.message)
