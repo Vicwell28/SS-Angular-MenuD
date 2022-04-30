@@ -2,16 +2,16 @@ table {
   width: 100%;
 }
 
-.color{
+.color {
   background-color: #2a2a72;
   background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
-  color : white; 
+  color: white;
 }
 
 .example-container {
-    height: 400px;
-    overflow: auto;
-  }
+  height: 400px;
+  overflow: auto;
+}
 
 th.mat-sort-header-sorted {
   color: black;
