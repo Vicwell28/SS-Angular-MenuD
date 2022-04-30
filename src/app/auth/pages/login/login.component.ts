@@ -13,8 +13,6 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class LoginComponent  {
 
-  public loading = false;
-
   constructor(
     private user : UserService, 
     private router:Router, 

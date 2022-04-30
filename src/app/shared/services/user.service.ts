@@ -24,8 +24,8 @@ export class UserService {
     return this.http.post<any>(`${this.url}login`, form);
   }
 
-  postSignUp(form:RegistrarseI):Observable<ResponseI>{
-    return this.http.post<ResponseI>(`${this.url}logout`, form); 
+  postSignUp(form:RegistrarseI):Observable<any>{
+    return this.http.post<any>(`${this.url}sign-in`, form); 
   }
 
   postLogout(token: any, body=""){
@@ -47,11 +47,11 @@ export class UserService {
   }
 
   putUpdateUser(id : number, User : any):Observable<ResponseI>{
-    return this.http.put<ResponseI>(`${this.url}user`, User); 
+    return this.http.put<ResponseI>(`${this.url}user/${id}`, User); 
   }
 
   deleteDestroyUser(id : number):Observable<ResponseI>{
-    return this.http.delete<ResponseI>(`${this.url}user`); 
+    return this.http.delete<ResponseI>(`${this.url}user/${id}`); 
   }
  
   //GUARDAR DATOS LOCAL

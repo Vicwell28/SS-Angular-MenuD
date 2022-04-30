@@ -5,31 +5,34 @@ import { environment } from 'src/environments/environment';
 import { ResponseI } from '../Models/response.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RolService {
+  url = environment.url;
 
-  url = environment.url; 
+  constructor(private http: HttpClient) {}
 
-  constructor(private http : HttpClient) { }
-
-  getIndexRol():Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.url}logout`); 
+  getIndexRole(): Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.url}role`);
   }
 
-  postStoreRol(Rol : any):Observable<ResponseI>{
-    return this.http.post<ResponseI>(`${this.url}logout`, Rol); 
+  postStoreRole(Role: any): Observable<any> {
+    return this.http.post<any>(`${this.url}role`, Role);
   }
 
-  getShowRol(id : number):Observable<ResponseI>{
-    return this.http.get<ResponseI>(`${this.url}logout`); 
+  getShowRole(id: number): Observable<ResponseI> {
+    return this.http.get<ResponseI>(`${this.url}role/${id}`);
   }
 
-  putUpdateRol(id : number, Rol : any):Observable<ResponseI>{
-    return this.http.put<ResponseI>(`${this.url}logout`, Rol); 
+  putUpdateRole(id: number, Role: any): Observable<ResponseI> {
+    return this.http.put<ResponseI>(`${this.url}role/${id}`, Role);
   }
 
-  deleteDestroyRol(id : number):Observable<ResponseI>{
-    return this.http.delete<ResponseI>(`${this.url}logout`); 
+  deleteDestroyRole(id: number): Observable<ResponseI> {
+    return this.http.delete<ResponseI>(`${this.url}role/${id}`);
+  }
+
+  postAssignViewByRole(Role: any): Observable<any> {
+    return this.http.post<any>(`${this.url}role/assign/view`, Role);
   }
 }

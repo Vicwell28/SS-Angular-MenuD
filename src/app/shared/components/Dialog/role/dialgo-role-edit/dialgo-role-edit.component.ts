@@ -5,6 +5,7 @@ import { Category } from 'src/app/shared/Models/category.interface';
 import { iconI } from 'src/app/shared/Models/icon.interface';
 import { AlertasService } from 'src/app/shared/services/alertas.service';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
+import { RolService } from 'src/app/shared/services/rol.service';
 
 @Component({
   selector: 'app-dialgo-role-edit',
@@ -15,7 +16,7 @@ export class DialgoRoleEditComponent implements OnInit {
 
   constructor(
     private alertService : AlertasService, 
-    private categoryService : CategoriaService,
+    private roleService : RolService,
     private fb : FormBuilder,
     public dialogRef: MatDialogRef<DialgoRoleEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Category,
@@ -36,7 +37,7 @@ export class DialgoRoleEditComponent implements OnInit {
   }
 
   ok() : void {
-    this.categoryService.putUpdateCategoria(this.data.id, this.categoryForm.value).subscribe(datos => {
+    this.roleService.putUpdateRole(this.data.id, this.categoryForm.value).subscribe(datos => {
       console.log(datos)
       if(datos.message.status){
         this.alertService.miniAlertOk(datos.message.message);

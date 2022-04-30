@@ -4,10 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
-import { DialogCategoryComponent } from 'src/app/shared/components/Dialog/dialog-category/dialog-category.component';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
-import { DialogCategoryEditComponent } from 'src/app/shared/components/Dialog/dialog-category-edit/dialog-category-edit.component';
 import { Category } from 'src/app/shared/Models/category.interface';
+import { RolService } from 'src/app/shared/services/rol.service';
+import { DialgoRoleStoreComponent } from 'src/app/shared/components/Dialog/role/dialgo-role-store/dialgo-role-store.component';
+import { DialgoRoleEditComponent } from 'src/app/shared/components/Dialog/role/dialgo-role-edit/dialgo-role-edit.component';
 
 @Component({
   selector: 'app-agregando-rol',
@@ -16,7 +17,7 @@ import { Category } from 'src/app/shared/Models/category.interface';
 })
 export class AgregandoRolComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'icon', 'level', 'status', 'opcions'];
+  displayedColumns: string[] = ['name', 'status', 'opcions'];
   dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -25,11 +26,12 @@ export class AgregandoRolComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private categoryService: CategoriaService,
+    private roleService : RolService, 
     private _liveAnnouncer: LiveAnnouncer
   ) {}
 
   ngOnInit(): void {
-    this.categoryService.getIndexCategoria().subscribe((datos) => {
+    this.roleService.getIndexRole().subscribe((datos) => {
       this.dataSource = new MatTableDataSource<Category>(datos.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -37,7 +39,7 @@ export class AgregandoRolComponent implements OnInit {
   }
 
   openDialogStore(): void {
-    const dialogRef = this.dialog.open(DialogCategoryComponent, {
+    const dialogRef = this.dialog.open(DialgoRoleStoreComponent, {
       width: '30%',
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -47,8 +49,8 @@ export class AgregandoRolComponent implements OnInit {
   }
 
   openDialogEdit(id: any): void {
-    this.categoryService.getShowCategoria(id).subscribe((datos) => {
-      const dialogRef = this.dialog.open(DialogCategoryEditComponent, {
+    this.roleService.getShowRole(id).subscribe((datos) => {
+      const dialogRef = this.dialog.open(DialgoRoleEditComponent, {
         width: '30%',
         data: datos.data,
       });
@@ -91,7 +93,7 @@ export class AgregandoRolComponent implements OnInit {
   }
 
   deshabilitar(id: any) {
-    this.categoryService.deleteDestroyCategoria(id).subscribe((datos) => {
+    this.roleService.deleteDestroyRole(id).subscribe((datos) => {
       console.log(datos);
       this.ngOnInit();
     });

@@ -4,6 +4,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { iconI } from 'src/app/shared/Models/icon.interface';
 import { AlertasService } from 'src/app/shared/services/alertas.service';
 import { CategoriaService } from 'src/app/shared/services/categoria.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { DialogData } from '../../dialog-category/dialog-category.component';
 
 @Component({
@@ -33,6 +34,7 @@ export class DialogUserStoreComponent implements OnInit {
  constructor(
   private alertService : AlertasService, 
   private categoryService : CategoriaService,
+  private userService : UserService,
     private fb : FormBuilder,
     public dialogRef: MatDialogRef<DialogUserStoreComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -54,7 +56,7 @@ export class DialogUserStoreComponent implements OnInit {
 
   ok() : void {
     console.log(this.categoryForm.value);
-    this.categoryService.postStoreCategoria(this.categoryForm.value).subscribe(datos => {
+    this.userService.postSignUp(this.categoryForm.value).subscribe(datos => {
       if(datos.length >= 1){ 
         if(!datos[0].message.status){
           this.alertService.alertFail(datos[0].message.message)

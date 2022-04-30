@@ -1,35 +1,26 @@
-<div id="sombra">
-    <mat-card class="example-card">
-       
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-        
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>
-
-      <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-card>
-            <mat-grid-tile>
-                
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>Shiba Inu</mat-card-title>
-                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-                  </mat-card-header>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="2">
-                
-            </mat-grid-tile>
+<div id="sombra" style="margin-top: 100px">
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+      <div style="width: 100%">
+        <mat-card style="text-align: center; height: 200px">Foto</mat-card>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div style="width: 100%">
+        <mat-card style="height: 200px">
+          <div style="text-align: center">Informacion Personal</div>
+          <div style="margin-top: 2rem">
+            <p><strong>Nombre De Usuario: </strong>{{ username }}</p>
+            <p><strong>Correo Electronico: </strong>{{ email }}</p>
+            <p><strong>Rol: </strong>{{ rol }}</p>
+          </div>
         </mat-card>
-      </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <div style="width: 100%; text-align: center">
+        <button mat-raised-button class="color1">Cambiar Contraseña</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

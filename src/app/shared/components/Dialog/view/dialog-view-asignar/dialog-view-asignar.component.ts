@@ -13,6 +13,8 @@ import { DialogData } from '../../dialog-category/dialog-category.component';
 })
 export class DialogViewAsignarComponent implements OnInit {
 
+  arreglodeid! : any[];
+
   icons : iconI [] = [
     {value: 'search', viewValue: 'search'},
     {value: 'home', viewValue: 'home'},
@@ -30,22 +32,25 @@ export class DialogViewAsignarComponent implements OnInit {
     {value: 'schedule', viewValue: 'schedule'},
   ];
 
+  Categorias : any; 
  constructor(
   private alertService : AlertasService, 
   private categoryService : CategoriaService,
     private fb : FormBuilder,
     public dialogRef: MatDialogRef<DialogViewAsignarComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   public categoryForm = this.fb.group({
-    name : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]], 
-    icon : ['',], 
-    level : [, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]], 
-    status : [true], 
+    role_id : [this.data.id], 
+    view_id : [], 
   })
 
   ngOnInit(): void {
+    console.log(this.data);
+    this.categoryService.getIndexCategoria().subscribe(datos => {
+      this.Categorias = datos.data;
+    })
   }
 
   onNoClick(): void {
@@ -53,28 +58,35 @@ export class DialogViewAsignarComponent implements OnInit {
   }
 
   ok() : void {
-    console.log(this.categoryForm.value);
-    this.categoryService.postStoreCategoria(this.categoryForm.value).subscribe(datos => {
-      if(datos.length >= 1){ 
-        if(!datos[0].message.status){
-          this.alertService.alertFail(datos[0].message.message)
-        }
-        else{
-          console.log("Entro en el else");
-          this.alertService.alertOk(datos.message.message)
-        }
-      }
-      else{
-        console.log("entro en el else")
-        if(datos.message.status){
-          this.alertService.miniAlertOk(datos.message.message)
-        }
-        else {
-          this.alertService.miniAlertFail(datos.message.message)
-        }
-      }
-      this.dialogRef.close(); 
-    })
+    console.log(this.categoryForm.value); 
+    // this.categoryService.postStoreCategoria(this.categoryForm.value).subscribe(datos => {
+    //   if(datos.length >= 1){ 
+    //     if(!datos[0].message.status){
+    //       this.alertService.alertFail(datos[0].message.message)
+    //     }
+    //     else{
+    //       console.log("Entro en el else");
+    //       this.alertService.alertOk(datos.message.message)
+    //     }
+    //   }
+    //   else{
+    //     console.log("entro en el else")
+    //     if(datos.message.status){
+    //       this.alertService.miniAlertOk(datos.message.message)
+    //     }
+    //     else {
+    //       this.alertService.miniAlertFail(datos.message.message)
+    //     }
+    //   }
+    //   this.dialogRef.close(); 
+    // })
   }
 
+  getViewId(event : any, id : any){
+    this.arreglodeid.push(id); 
+    this.categoryForm.value.view_id = this.arreglodeid;
+    console.log(id);
+    console.log(this.categoryForm.value); 
+  }
+// 
 }
